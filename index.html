@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Email Campaign: Madleen Ship Detentions</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+    button { margin-top: 10px; padding: 8px 12px; border: none; background: #0066cc; color: white; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #004999; }
+    .country { font-weight: bold; }
+    #name-input { padding: 5px; margin-bottom: 10px; width: 100%; max-width: 300px; }
+    .phone { margin-top: 5px; display: block; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Email Campaign: Demand Safe Release from the Madleen</h1>
+  <p>Enter your name below and click a button to email the appropriate government representative. Your name will be auto-filled into each message. Phone numbers are included in case you wish to call as well.</p>
+
+  <label for="username">Your Name:</label>
+  <input type="text" id="username" placeholder="e.g. Jane Doe" />
+
+  <br/><br/>
+  <div id="people-container"></div>
+
+  <script>
+    const people = [
+      {
+        name: 'Greta Thunberg',
+        country: 'Sweden',
+        flags: '🇸🇪',
+        emails: ['ud.registrator@gov.se', 'ud.kom.ipc@gov.se', 'susan.vo.bergqvist@gov.se','linn.laurin@regeringskansliet.se','linnea.schor.radeborn@regeringskansliet.se', 'ud.pressjour@gov.se'],
+        phone: '+46 8 405 10 00',
+        subject: 'Urgent support for Swedish citizen detained – Greta Thunberg (Madleen)',
+        body: `Dear Minister of Foreign Affairs,\n\nI am deeply concerned that Greta Thunberg, a Swedish citizen and prominent climate activist, has been detained aboard the vessel \"Madleen\" in international waters. Her safety and access to consular support are paramount.\n\nI respectfully urge the Swedish government to take immediate diplomatic action to secure her safe release and ensure she is granted full consular access.\n\nThank you for your urgent attention.\n\nSincerely,\n[Your Name]`,
+        social: `
+          🌐 <a href='https://www.government.se/contacts/' target='_blank'>Website</a><br/>
+          🐦 <a href='https://twitter.com/SweMFA' target='_blank'>@SweMFA</a><br/>
+          📘 <a href='https://www.facebook.com/SweMFA' target='_blank'>SweMFA</a><br/>
+          📷 <a href='https://www.instagram.com/swedishmfa' target='_blank'>@swedishmfa</a>
+        `
+      },
+      {
+        name: 'Yasemin Acar',
+        country: 'Germany',
+        flags: '🇩🇪',
+        emails: ['buergerservice@diplo.de'],
+        phone: '+49 30 5000 2000',
+        subject: 'Urgent concern: German activist detained – Yasemin Acar (Madleen)',
+        body: `Sehr geehrte Damen und Herren,\n\nich bin äußerst besorgt, dass die deutsche Staatsbürgerin Yasemin Acar an Bord des Schiffs \"Madleen\" in internationalen Gewässern festgehalten wird. Ihre Sicherheit und der Zugang zu konsularischer Unterstützung müssen gewährleistet sein.\n\nIch bitte die Bundesregierung dringend, alle notwendigen diplomatischen Schritte zu unternehmen, um ihre sofortige Freilassung sicherzustellen.\n\nVielen Dank für Ihre Unterstützung.\nMit freundlichen Grüßen,\n[Ihr Name]`,
+        social: `
+          🌐 <a href='https://www.auswaertiges-amt.de/en/visa-service/buergerservice/contact-form' target='_blank'>Website</a><br/>
+          🐦 <a href='https://twitter.com/GermanyDiplo' target='_blank'>@GermanyDiplo</a><br/>
+          📘 <a href='https://www.facebook.com/AuswaertigesAmt' target='_blank'>Auswärtiges Amt</a><br/>
+          📷 <a href='https://www.instagram.com/auswaertigesamt' target='_blank'>@auswaertigesamt</a>
+        `
+      },
+      {
+        name: 'French Citizens (Group)',
+        country: 'France',
+        flags: '🇫🇷',
+        emails: ['alertes.cdc@diplomatie.gouv.fr', 'courrier.scec@diplomatie.gouv.fr'],
+        phone: '+33 1 43 17 53 53',
+        subject: 'Urgent action needed: Multiple French citizens detained aboard Madleen',
+        body: `Monsieur le Ministre,\n\nJe vous écris pour exprimer ma vive inquiétude concernant la détention de plusieurs citoyens français à bord du navire \"Madleen\", intercepté en eaux internationales. Parmi les personnes détenues figurent Rima Hassan, Baptiste Andre, Omar Faiad, Pascal Maurieras, Yanis Mhamdi et Reva Viard.\n\nJe vous prie de bien vouloir prendre toutes les mesures diplomatiques nécessaires afin de garantir leur sécurité, leur accès à l’assistance consulaire, et leur libération immédiate.\n\nMerci pour votre attention.\nCordialement,\n[Votre nom]`,
+        social: `
+          🌐 <a href='https://www.diplomatie.gouv.fr/en/navigation/email-us/' target='_blank'>Website</a><br/>
+          🐦 <a href='https://twitter.com/FranceDiplo_EN' target='_blank'>@FranceDiplo_EN</a>,
+              <a href='https://twitter.com/francediplo' target='_blank'>@francediplo</a>,
+              <a href='https://twitter.com/jnbarot' target='_blank'>@jnbarot</a><br/>
+          📘 <a href='https://www.facebook.com/FranceDiplomatie' target='_blank'>France Diplomatie</a>,
+              <a href='https://www.facebook.com/JeanNoelBarot' target='_blank'>Jean-Noël Barot</a><br/>
+          📷 <a href='https://www.instagram.com/francediplo' target='_blank'>@francediplo</a>,
+              <a href='https://www.instagram.com/jeannoelbarot' target='_blank'>@jeannoelbarot</a>
+        `
+      },
+      {
+        name: 'Thiago Avila',
+        country: 'Brazil',
+        flags: '🇧🇷',
+        emails: ['ouvidoria@itamaraty.gov.br', 'portal@itamaraty.gov.br'],
+        phone: '+55 61 2030 8000',
+        subject: 'Urgent support needed: Thiago Avila arrested – Madleen',
+        body: `Prezados Ministros,\n\nEscrevo em profunda preocupação pela detenção do ativista brasileiro Thiago Avila, a bordo do navio \"Madleen\", em águas internacionais. Solicito apoio diplomático imediato para garantir sua integridade, liberação segura e acesso consular.\n\nAtenciosamente,\n[Seu nome]`,
+        social: `
+          🐦 <a href='https://twitter.com/ItamaratyGovBr' target='_blank'>@ItamaratyGovBr</a><br/>
+          📘 <a href='https://www.facebook.com/ItamaratyGovBr' target='_blank'>Ministério das Relações Exteriores</a><br/>
+          📷 <a href='https://www.instagram.com/itamaratygovbr' target='_blank'>@itamaratygovbr</a>
+        `
+      },
+      {
+        name: 'Suayb Ordu',
+        country: 'Turkiye',
+        flags: '🇹🇷',
+        emails: ['info@mfa.gov.ct.tr', 'embassy.london@mfa.gov.tr','consulate.london@mfa.gov.tr'],
+        phone: '+90 312 292 1000',
+        subject: 'Urgent plea: Turkish activist Suayb Ordu detained (Madleen)',
+        body: `Sayın Bakan,\n\nBen, Madleen gemisinde bulunan Türk aktivist Suayb Ordu’nun gözaltına alındığını büyük bir endişeyle öğrendim. Güvenliği, derhal serbest bırakılması ve konsolosluk erişimi için diplomatik girişimlerinizi bekliyorum.\n\nTeşekkür ederim,\n[Adınız]`,
+        social: `
+          🌐 <a href='https://www.mfa.gov.tr/contact-us.en.mfa' target='_blank'>Website</a><br/>
+          🐦 <a href='https://twitter.com/MFATurkiye' target='_blank'>@MFATurkiye</a><br/>
+          📘 <a href='https://www.facebook.com/disisleri.bakanligi' target='_blank'>T.C. Dışişleri Bakanlığı</a><br/>
+          📷 <a href='https://www.instagram.com/tcdisisleri' target='_blank'>@tcdisisleri</a>
+        `
+      },
+      {
+        name: 'Sergio Toribio',
+        country: 'Spain',
+        flags: '🇪🇸',
+        emails: ['consular@maec.es','informacion.consular@maec.es', 'informae@maec.es'],
+        phone: '+34 91 379 97 00',
+        subject: 'Urgent concern: Sergio Toribio detained (Madleen)',
+        body: `Señor Ministro,\n\nMe preocupa la detención de Sergio Toribio, ciudadano español a bordo del navío \"Madleen\". Le insto a que garantice su seguridad, acceso consular y promueva su liberación inmediata.\n\nAtentamente,\n[Su nombre]`,
+        social: `
+          🐦 <a href='https://twitter.com/SpainMFA' target='_blank'>@SpainMFA</a>,
+              <a href='https://twitter.com/MAECgob' target='_blank'>@MAECgob</a>,
+              <a href='https://twitter.com/jmalbares' target='_blank'>@jmalbares</a><br/>
+          📷 <a href='https://www.instagram.com/exteriores.maec' target='_blank'>@exteriores.maec</a><br/>
+          🌐 <a href='https://jmalbares.bsky.social' target='_blank'>jmalbares.bsky.social</a>,
+              <a href='https://exterioresgob.bsky.social' target='_blank'>exterioresgob.bsky.social</a>
+        `
+      },
+      {
+        name: 'Marco van Rennes',
+        country: 'Netherlands',
+        flags: '🇳🇱',
+        emails: ['postbus@minbuza.nl'],
+        phone: '+31 70 348 6486',
+        subject: 'Concern: Dutch citizen detained aboard Madleen – Marco van Rennes',
+        body: `Geachte Minister,\n\nIk ben ernstig bezorgd dat de Nederlandse burger Marco van Rennes aan boord van het schip \"Madleen\" is vastgehouden. Ik verzoek dringend diplomatieke actie om zijn veilige vrijlating en consulaire bijstand te garanderen.\n\nMet vriendelijke groet,\n[Uw naam]`,
+        social: `
+          🌐 <a href='https://www.government.nl/contact/public-information-service/email' target='_blank'>Website</a><br/>
+          🐦 <a href='https://twitter.com/DutchMFA' target='_blank'>@DutchMFA</a><br/>
+          📘 <a href='https://www.facebook.com/ministeriebz' target='_blank'>@ministeriebz</a><br/>
+          📷 <a href='https://www.instagram.com/minbz' target='_blank'>@minbz</a>
+        `
+      },
+      {
+        name: 'UK – The Madleen ship',
+        country: 'United Kingdom',
+        flags: '🇬🇧',
+        emails: ['publiccorrespondence@cabinetoffice.gov.uk', 'newsdesk@fcdo.gov.uk', 'fcdo.services@fcdo.gov.uk'],
+        phone: '+44 01908 515789',
+        subject: 'Urgent: British vessel “Madleen” & detained crew',
+        body: `Dear Prime Minister / Foreign Secretary,\n\nThe British-flagged vessel “Madleen” has been intercepted by Israeli forces in international waters and its crew detained, including 11 activists and a journalist. I urge your government to act urgently via diplomatic channels to ensure their immediate and safe release.\n\nTheir right to protection under maritime law, British flag rights, and international conventions must be upheld.\n\nThank you for your swift action.\n\nSincerely,\n[Your Name]`,
+        social: `
+          🌐 <a href='https://www.gov.uk/government/organisations/foreign-commonwealth-development-office' target='_blank'>FCDO Website</a><br/>
+          🐦 <a href='https://twitter.com/FCDOGovUK' target='_blank'>@FCDOGovUK</a><br/>
+          📘 <a href='https://www.facebook.com/FCDOGovUK' target='_blank'>FCDO Facebook</a><br/>
+          📷 <a href='https://www.instagram.com/fcdogovuk' target='_blank'>@fcdogovuk</a>
+        `
+      }
+    ];
+
+    function replaceName(text, name) {
+      return text.replaceAll('[Your Name]', name).replaceAll('[Ihr Name]', name).replaceAll('[Votre nom]', name).replaceAll('[Seu nome]', name).replaceAll('[Adınız]', name).replaceAll('[Su nombre]', name).replaceAll('[Uw naam]', name);
+    }
+
+    function sendMail(person) {
+      const name = document.getElementById('username').value.trim();
+      if (!name) {
+        alert('Please enter your name before sending emails.');
+        return;
+      }
+      if (!person.emails.length) {
+        alert('No public email available. Please consider calling instead.');
+        return;
+      }
+      const to = person.emails.join(',');
+      const subject = person.subject;
+      const body = replaceName(person.body, name);
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
+
+    function createCards() {
+      const container = document.getElementById('people-container');
+      people.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <div><span class="country">${p.flags} ${p.name} – ${p.country}</span></div>
+          <button onclick="sendMail(people[${i}])">
+            📧 Email ${p.country} Government
+          </button>
+          ${p.phone ? `<a class="phone" href="tel:${p.phone.replace(/\s+/g, '')}">📞 Call: ${p.phone}</a>` : ''}
+          ${p.social ? `<div class="social" style="margin-top: 10px;">${p.social}</div>` : ''}
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    window.onload = createCards;
+  </script>
+</body>
+</html>
