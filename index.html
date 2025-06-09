@@ -29,7 +29,7 @@
         name: 'Greta Thunberg',
         country: 'Sweden',
         flags: '🇸🇪',
-        emails: ['ud.registrator@gov.se', 'ud.kom.ipc@gov.se', 'susan.vo.bergqvist@gov.se','linn.laurin@regeringskansliet.se','linnea.schor.radeborn@regeringskansliet.se', 'ud.pressjour@gov.se'],
+        emails: ['ud.registrator@gov.se', 'ud.kom.ipc@gov.se', 'susan.vo.bergqvist@gov.se','linn.laurin@regeringskansliet.se','linnea.schor.radeborn@regeringskansliet.se', 'ud.pressjour@gov.se', 'bjorn.gustavsson@foreign.ministry.se'],
         phone: '+46 8 405 10 00',
         subject: 'Urgent support for Swedish citizen detained – Greta Thunberg (Madleen)',
         body: `Dear Minister of Foreign Affairs,\n\nI am deeply concerned that Greta Thunberg, a Swedish citizen and prominent climate activist, has been detained aboard the vessel \"Madleen\" in international waters. Her safety and access to consular support are paramount.\n\nI respectfully urge the Swedish government to take immediate diplomatic action to secure her safe release and ensure she is granted full consular access.\n\nThank you for your urgent attention.\n\nSincerely,\n[Your Name]`,
@@ -124,7 +124,7 @@
         name: 'Marco van Rennes',
         country: 'Netherlands',
         flags: '🇳🇱',
-        emails: ['postbus@minbuza.nl'],
+        emails: ['willemien.veldman@minbuza.nl', 'donato.colonna@minbuza.nl','info@minbuza.nl', 'VCl@minbuza.nl'],
         phone: '+31 70 348 6486',
         subject: 'Concern: Dutch citizen detained aboard Madleen – Marco van Rennes',
         body: `Geachte Minister,\n\nIk ben ernstig bezorgd dat de Nederlandse burger Marco van Rennes aan boord van het schip \"Madleen\" is vastgehouden. Ik verzoek dringend diplomatieke actie om zijn veilige vrijlating en consulaire bijstand te garanderen.\n\nMet vriendelijke groet,\n[Uw naam]`,
@@ -139,7 +139,7 @@
         name: 'UK – The Madleen ship',
         country: 'United Kingdom',
         flags: '🇬🇧',
-        emails: ['publiccorrespondence@cabinetoffice.gov.uk', 'newsdesk@fcdo.gov.uk', 'fcdo.services@fcdo.gov.uk'],
+        emails: ['newsdesk@fcdo.gov.uk', 'fcdo.services@fcdo.gov.uk'],
         phone: '+44 01908 515789',
         subject: 'Urgent: British vessel “Madleen” & detained crew',
         body: `Dear Prime Minister / Foreign Secretary,\n\nThe British-flagged vessel “Madleen” has been intercepted by Israeli forces in international waters and its crew detained, including 11 activists and a journalist. I urge your government to act urgently via diplomatic channels to ensure their immediate and safe release.\n\nTheir right to protection under maritime law, British flag rights, and international conventions must be upheld.\n\nThank you for your swift action.\n\nSincerely,\n[Your Name]`,
@@ -166,7 +166,7 @@
         alert('No public email available. Please consider calling instead.');
         return;
       }
-      const to = person.emails.join(',');
+      const to = person.emails.join(';');
       const subject = person.subject;
       const body = replaceName(person.body, name);
       const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
